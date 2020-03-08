@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:async/async.dart';
 import 'dart:typed_data';
+import 'video.dart';
 
 
 
@@ -94,7 +95,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Future scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
-      setState(() => this.barcode = barcode);
+
+      Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (ctxt) =>
+            new VideoScreen(
+              qrText: barcode,)),
+      );
+
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
