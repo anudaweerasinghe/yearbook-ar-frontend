@@ -10,7 +10,10 @@ const baseUrl = "http://142.93.212.170:8080/yearbook/";
 
 Future<Video> getVideoDetails(String qrText) async{
 
-  String url = baseUrl+'videos/get?qrText='+qrText;
+
+  String qr = qrText.substring(38);
+
+  String url = baseUrl+'videos/get?qrText='+qr;
 
   final response = await http.get(url);
 
